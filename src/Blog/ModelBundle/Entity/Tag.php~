@@ -3,6 +3,7 @@
 namespace Blog\ModelBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\DBAL\Schema\TableDiff;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -34,7 +35,9 @@ class Tag extends Timestampable
     /**
      * @var ArrayCollection
      *
-     * ORM\OneToMany(targetEntity="Post", mappedBy="tag")
+     * @ORM\ManyToMany(targetEntity="Post", inversedBy="tags")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     * @Assert\NotBlank
      */
     private $posts;
 
@@ -80,5 +83,5 @@ class Tag extends Timestampable
     }
 
 
-}
 
+}

@@ -35,7 +35,9 @@ class Tag extends Timestampable
     /**
      * @var ArrayCollection
      *
-     * ORM\OneToMany(targetEntity="Post", mappedBy="tag", cascade={"remove"})
+     * @ORM\ManyToMany(targetEntity="Post", inversedBy="tags")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     * @Assert\NotBlank
      */
     private $posts;
 
@@ -80,39 +82,40 @@ class Tag extends Timestampable
         return $this->name;
     }
 
+
+
+
     /**
-     * Add posts
+     * Add post
      *
-     * @param Post $posts
+     * @param \Blog\ModelBundle\Entity\Post $post
      *
      * @return Tag
      */
-
-    public function addPost(Post $posts)
+    public function addPost(\Blog\ModelBundle\Entity\Post $post)
     {
-        $this->posts[] = $posts;
+        $this->posts[] = $post;
 
         return $this;
     }
 
     /**
-     * Remove posts
+     * Remove post
      *
-     * @param Post $posts
+     * @param \Blog\ModelBundle\Entity\Post $post
      */
-    public function removePost(Post $posts)
+    public function removePost(\Blog\ModelBundle\Entity\Post $post)
     {
-        $this->posts->removeElement($posts);
+        $this->posts->removeElement($post);
     }
 
     /**
      * Get posts
      *
-     * @return ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPosts()
     {
         return $this->posts;
     }
-
 }

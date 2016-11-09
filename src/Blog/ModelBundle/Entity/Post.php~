@@ -2,6 +2,7 @@
 
 namespace Blog\ModelBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -49,12 +50,17 @@ class Post extends Timestampable
     /**
      * @var Tag
      *
-     * @ORM\ManyToOne(targetEntity="Tag", inversedBy="posts")
-     * @ORM\JoinColumn(name="tag_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="posts")
+     * @ORM\JoinColumn(name="tag_id", referencedColumnName="id")
      * @Assert\NotBlank
      */
     private $tag;
 
+
+    public function __construct()
+    {
+        $this->tag = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -135,4 +141,6 @@ class Post extends Timestampable
     {
         return $this->author;
     }
+
+
 }
