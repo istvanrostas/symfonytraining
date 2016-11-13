@@ -1,0 +1,10 @@
+home : Home
+
+by: by
+read.more: Readmore
+author: Author
+
+post:
+  plural: Posts
+  on: Posted
+  latest: Lastest posts

@@ -43,7 +43,7 @@ class Posts extends AbstractFixture implements OrderedFixtureInterface
            urna. Etiam ante libero, finibus nec velit eu, pellentesque ornare libero.
             Nullam vitae mattis massa, in blandit mauris.');
         $p1->setAuthor($this->getAuthor($manager, 'David'));
-        $p1->setTag($this->getTag($manager, 'entertainment'));
+        $p1->addTag($this->getTag($manager, 'entertainment'));
 
 
         $p2 = new Post();
@@ -55,7 +55,7 @@ class Posts extends AbstractFixture implements OrderedFixtureInterface
            urna. Etiam ante libero, finibus nec velit eu, pellentesque ornare libero.
             Nullam vitae mattis massa, in blandit mauris.');
         $p2->setAuthor($this->getAuthor($manager, 'Eddie'));
-        $p2->setTag($this->getTag($manager, 'sport'));
+        $p2->addTag($this->getTag($manager, 'sport'));
 
 
         $p3 = new Post();
@@ -67,7 +67,7 @@ class Posts extends AbstractFixture implements OrderedFixtureInterface
            urna. Etiam ante libero, finibus nec velit eu, pellentesque ornare libero.
             Nullam vitae mattis massa, in blandit mauris.');
         $p3->setAuthor($this->getAuthor($manager, 'Elsa'));
-        $p3->setTag($this->getTag($manager, 'sport'));
+        $p3->addTag($this->getTag($manager, 'sport'));
 
 
 

@@ -3,14 +3,16 @@
 namespace Blog\ModelBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Post
  *
  * @ORM\Table(name="post")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Blog\ModelBundle\Repository\PostRepository")
  */
 class Post extends Timestampable
 {
@@ -33,6 +35,14 @@ class Post extends Timestampable
     /**
      * @var string
      *
+     * @Gedmo\Slug(fields={"title"}, unique=false)
+     * @ORM\Column(length=255)
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="body", type="text")
      * @Assert\NotBlank
      */
@@ -42,7 +52,7 @@ class Post extends Timestampable
      * @var Author
      *
      * @ORM\ManyToOne(targetEntity="Author", inversedBy="posts")
-     * @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
      * @Assert\NotBlank
      */
     private $author;
@@ -54,12 +64,13 @@ class Post extends Timestampable
      * @ORM\JoinColumn(name="tag_id", referencedColumnName="id")
      * @Assert\NotBlank
      */
-    private $tag;
+    private $tags;
 
 
     public function __construct()
     {
-        $this->tag = new ArrayCollection();
+
+        $this->tags = new ArrayCollection();
     }
 
     /**
@@ -93,6 +104,30 @@ class Post extends Timestampable
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -147,13 +182,13 @@ class Post extends Timestampable
     /**
      * Add tag
      *
-     * @param \Blog\ModelBundle\Entity\Tag $tag
+     * @param Tag $tag
      *
      * @return Post
      */
-    public function addTag(\Blog\ModelBundle\Entity\Tag $tag)
+    public function addTag(Tag $tag)
     {
-        $this->tag[] = $tag;
+        $this->tags[] = $tag;
 
         return $this;
     }
@@ -161,20 +196,22 @@ class Post extends Timestampable
     /**
      * Remove tag
      *
-     * @param \Blog\ModelBundle\Entity\Tag $tag
+     * @param Tag $tag
      */
-    public function removeTag(\Blog\ModelBundle\Entity\Tag $tag)
+    public function removeTag(Tag $tag)
     {
-        $this->tag->removeElement($tag);
+        $this->tags->removeElement($tag);
     }
 
     /**
      * Get tag
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
-    public function getTag()
+    public function getTags()
     {
-        return $this->tag;
+        return $this->tags;
     }
+
+
 }
