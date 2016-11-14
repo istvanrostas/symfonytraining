@@ -3,17 +3,23 @@ home: Kezdőlap
 by: Szerző:
 read.more: Több
 author: Szerző
+name: Név
+send: Küldés
+
 
 post:
   plural: Posztok
   on: Mikor:
   latest: Legfrissebbek
   by.author: %name% posztjai
+  comments: '{0} Nincs komment| {1} %count% komment|]1,Inf] %count% komment'
   by: Szerző
 
 comment:
     plural: Kommentek
     on: Mikor:
+    singular: Komment
+    write: Szólj hozzá
 
 author:
   empty.posts: Nincs megjeleníthető posztja az adott Szerzőnek
