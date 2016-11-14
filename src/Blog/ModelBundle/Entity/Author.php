@@ -45,7 +45,7 @@ class Author extends Timestampable
     /**
      * @var ArrayCollection
      *
-     *ORM\OneToMany(targetEntity="Post", mappedBy="author")
+     *ORM\OneToMany(targetEntity="Post", mappedBy="author", cascade={'remove'})
      */
     private $posts;
 
@@ -147,7 +147,7 @@ class Author extends Timestampable
     /**
      * Get posts
      *
-     * @return ArrayCollection
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPosts()
     {

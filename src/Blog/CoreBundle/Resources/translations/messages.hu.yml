@@ -8,3 +8,12 @@ post:
   plural: Posztok
   on: Mikor:
   latest: Legfrissebbek
+  by.author: %name% posztjai
+  by: Szerző
+
+comment:
+    plural: Kommentek
+    on: Mikor:
+
+author:
+  empty.posts: Nincs megjeleníthető posztja az adott Szerzőnek

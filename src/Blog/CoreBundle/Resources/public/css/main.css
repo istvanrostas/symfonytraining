@@ -65,6 +65,19 @@ article header p{
     margin: 0;
 }
 
+
+article.post{
+    margin-bottom: 50px;
+}
+
+article.comment{
+    margin-top: 0;
+    margin-left: 40px;
+    padding: 10px;
+
+    border: 1px solid #7c8ea3;
+}
+
 aside {
     float: right;
     width: 30%;
