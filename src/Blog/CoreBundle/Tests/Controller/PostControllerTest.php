@@ -44,5 +44,14 @@ class PostControllerTest extends WebTestCase
 
         $this->assertEquals($post->getTitle(), $crawler->filter('h1')->text());
 
+        $this->
+        assertGreaterOrEquals(1, $crawler->filter('article.comment')->count(), 'There should be at least 1 comment');
+
+    }
+
+    public function testCreateComment()
+    {
+        
     }
 }
+
