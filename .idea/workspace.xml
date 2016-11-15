@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b6b8c78e-a3a7-437a-9b4d-87be378fa058" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Blog/ModelBundle/DataFixtures/ORM/25-Comments.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/DoctrineMigrations/Version20161113165034.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/cache/.gitkeep" afterPath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/views/Post/_comment.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/CoreBundle/Controller/AuthorController.php" afterPath="$PROJECT_DIR$/src/Blog/CoreBundle/Controller/AuthorController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/public/css/main.css" afterPath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/public/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/translations/messages.hu.yml" afterPath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/translations/messages.hu.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/views/Author/show.html.twig" afterPath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/views/Author/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/views/Post/_post.html.twig" afterPath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/views/Post/_post.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/views/Post/show.html.twig" afterPath="$PROJECT_DIR$/src/Blog/CoreBundle/Resources/views/Post/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/CoreBundle/Tests/Controller/AuthorControllerTest.php" afterPath="$PROJECT_DIR$/src/Blog/CoreBundle/Tests/Controller/AuthorControllerTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/ModelBundle/DataFixtures/ORM/15-Tags.php" afterPath="$PROJECT_DIR$/src/Blog/ModelBundle/DataFixtures/ORM/15-Tags.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/ModelBundle/DataFixtures/ORM/20-Posts.php" afterPath="$PROJECT_DIR$/src/Blog/ModelBundle/DataFixtures/ORM/20-Posts.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/ModelBundle/Entity/Author.php" afterPath="$PROJECT_DIR$/src/Blog/ModelBundle/Entity/Author.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/ModelBundle/Entity/Post.php" afterPath="$PROJECT_DIR$/src/Blog/ModelBundle/Entity/Post.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blog/ModelBundle/Entity/Tag.php" afterPath="$PROJECT_DIR$/src/Blog/ModelBundle/Entity/Tag.php" />
-    </list>
+    <list default="true" id="b6b8c78e-a3a7-437a-9b4d-87be378fa058" name="Default" comment="" />
     <ignored path="symfony2test.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -766,16 +748,16 @@
       <workItem from="1479046132337" duration="11902000" />
       <workItem from="1479119981686" duration="1975000" />
       <workItem from="1479122899664" duration="46000" />
-      <workItem from="1479123150856" duration="11772000" />
+      <workItem from="1479123150856" duration="12145000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69228000" />
+    <option name="totallyTimeSpent" value="69601000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20377359" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
