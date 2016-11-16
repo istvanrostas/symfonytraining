@@ -41,7 +41,7 @@ class PostController extends Controller
      * @throws NotFoundHttpException
      * @return array
      *
-     * @Route("/{slug}")
+     * @Route("/posts/{slug}")
      *
      */
     public function showAction($slug)
