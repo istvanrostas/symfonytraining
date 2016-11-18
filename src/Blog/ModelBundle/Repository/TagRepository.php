@@ -10,4 +10,27 @@ namespace Blog\ModelBundle\Repository;
  */
 class TagRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findUsedTags()
+    {
+        $qb = $this->getQueryBuilder()
+            ->leftJoin('posts_tags', 'ps')
+            ->where('ps.post_id NOT NULL');
+
+        return $qb->getQuery()->getResult();
+    }
+
+
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    private function getQueryBuilder()
+    {
+        $em = $this->getEntityManager();
+
+        $qb = $em->getRepository('ModelBundle:Tag')
+            ->createQueryBuilder('t');
+
+        return $qb;
+    }
+
 }
