@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Tag
  *
  * @ORM\Table(name="tag")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Blog\ModelBundle\Repository\TagRepository")
  */
 class Tag extends Timestampable
 {
@@ -35,7 +35,7 @@ class Tag extends Timestampable
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Post", inversedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Post", mappedBy="tags")
      * @ORM\JoinTable(name="posts_tags")
      * @Assert\NotBlank
      */

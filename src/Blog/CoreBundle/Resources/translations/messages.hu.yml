@@ -23,3 +23,7 @@ comment:
 
 author:
   empty.posts: Nincs megjeleníthető posztja az adott Szerzőnek
+
+tag:
+    plural: Tagek
+    used: Használtaba lévő tag-ek

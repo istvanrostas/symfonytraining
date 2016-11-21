@@ -60,7 +60,7 @@ class Post extends Timestampable
     /**
      * @var Tag
      *
-     * @ORM\ManyToMany(targetEntity="Tag", mappedBy="posts")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="posts")
      * @ORM\JoinTable(name="posts_tags")
      * @Assert\NotBlank
      */
