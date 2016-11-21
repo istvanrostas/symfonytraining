@@ -3,13 +3,6 @@
 {% block title %}{{ 'tag.plural' | trans }}{% endblock %}
 
 {% block sidebar %}
-
-
-        {% for tag in tags %}
-            <p>{{ tag.name }}</p>
-        {% endfor %}
-
-
 {% endblock %}
 
 {% block section %}
@@ -20,6 +13,6 @@
     {% for tag in usedTags %}
        <p><a href="{{ path('blog_core_tag_show', {name: tag.name}) }}" >{{ tag.name }}</a></p>
     {% endfor %}
-0
+
 
 {% endblock %}

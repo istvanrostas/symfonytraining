@@ -12,14 +12,14 @@ use Symfony\Component\Security\Core\SecurityContext;
  */
 class DefaultController extends Controller
 {
-
-
     /**
      * @param $name
+     *
+     * @Route("/")
      */
     public function indexAction()
     {
-
+        return $this->redirect($this->generateUrl('blog_admin_post_index'));
     }
 
 

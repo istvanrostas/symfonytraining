@@ -16,7 +16,6 @@ class TagController extends Controller
     public function indexAction()
     {
 
-
         $usedTags = $this->getDoctrine()->getRepository('ModelBundle:Tag')->findUsedTags();
 
 
