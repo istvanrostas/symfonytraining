@@ -3,6 +3,8 @@
 namespace Blog\CoreBundle\Controller;
 
 use Blog\ModelBundle\Entity\Tag;
+
+use Blog\ModelBundle\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
@@ -13,6 +15,7 @@ class TagController extends Controller
      */
     public function indexAction()
     {
+
 
         $usedTags = $this->getDoctrine()->getRepository('ModelBundle:Tag')->findUsedTags();
 
@@ -34,6 +37,7 @@ class TagController extends Controller
 
         return $this->render('CoreBundle:Tag:show.html.twig', array(
             'posts' => $posts,
+
         ));
     }
 

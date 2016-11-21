@@ -4,14 +4,22 @@
 
 {% block sidebar %}
 
+
+        {% for tag in tags %}
+            <p>{{ tag.name }}</p>
+        {% endfor %}
+
+
 {% endblock %}
 
 {% block section %}
+
 
     <h2>{{ 'tag.used' | trans }}</h2>
 
     {% for tag in usedTags %}
        <p><a href="{{ path('blog_core_tag_show', {name: tag.name}) }}" >{{ tag.name }}</a></p>
     {% endfor %}
+0
 
 {% endblock %}

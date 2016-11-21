@@ -12,6 +12,7 @@ use Doctrine\ORM\Query\Expr;
  */
 class TagRepository extends \Doctrine\ORM\EntityRepository
 {
+
     /**
      * Find used tags
      *
@@ -32,6 +33,7 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
             ->setParameter('tagName', $tagName)
             ->getQuery()
             ->getRes;
+
     }
 
 
@@ -49,6 +51,7 @@ class TagRepository extends \Doctrine\ORM\EntityRepository
             ->createQueryBuilder($alias);
 
         $em->flush();
+
 
         return $qb;
     }

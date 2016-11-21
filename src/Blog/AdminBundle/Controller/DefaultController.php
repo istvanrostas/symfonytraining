@@ -5,13 +5,23 @@ namespace Blog\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+use Symfony\Component\Security\Core\SecurityContext;
+
+/**
+ * Class DefaultController
+ */
 class DefaultController extends Controller
 {
+
+
     /**
-     * @Route("/")
+     * @param $name
      */
     public function indexAction()
     {
-        return $this->render('AdminBundle:Default:index.html.twig');
+
     }
+
+
+
 }
