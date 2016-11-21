@@ -1,17 +1,16 @@
 <?php
 
-namespace Blog\AdminBundle\Tests\Controller;
+namespace Blog\CoreBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class TagControllerTest extends WebTestCase
 {
     public function testIndex()
     {
         $client = static::createClient();
 
         $crawler = $client->request('GET', '/');
-
-        $this->assertContains('Hello World', $client->getResponse()->getContent());
     }
+
 }

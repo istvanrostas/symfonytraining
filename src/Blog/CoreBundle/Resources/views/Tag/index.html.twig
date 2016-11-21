@@ -1,0 +1,17 @@
+{% extends "CoreBundle::layout.html.twig" %}
+
+{% block title %}{{ 'tag.plural' | trans }}{% endblock %}
+
+{% block sidebar %}
+
+        {% for tag in tags %}
+            <p>{{ tag.name }}</p>
+        {% endfor %}
+
+{% endblock %}
+
+{% block section %}
+
+
+
+{% endblock %}

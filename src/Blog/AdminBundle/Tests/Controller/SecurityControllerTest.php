@@ -4,13 +4,13 @@ namespace Blog\AdminBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class AdminControllerTest extends WebTestCase
+class SecurityControllerTest extends WebTestCase
 {
-    public function testIndex()
+    public function testLogin()
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/login');
     }
 
 }

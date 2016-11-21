@@ -1,4 +1,4 @@
 services:
 #    admin.example:
-#        class: Blog\AndminBundle\Example
+#        class: Blog\AdminBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
