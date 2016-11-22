@@ -9,8 +9,8 @@
     {% endif %}
 
     <form action="{{ path('blog_admin_security_logincheck') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="_username" id="username" value="{{ last_username }}" />
+        <label for="name">Username:</label>
+        <input type="text" name="_name" id="name" value="{{ last_username }}" />
 
         <label for="password">Password:</label>
         <input type="password" name="_password" id="password" value="{{ last_username }}" />

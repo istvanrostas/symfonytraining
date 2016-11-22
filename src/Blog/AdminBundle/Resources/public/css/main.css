@@ -71,3 +71,11 @@ table.record_list td {
     padding: 10px;
 }
 
+[id^=blog_modelbundle] > div{
+    margin: 10px;
+}
+
+[id^=blog_modelbundle] label{
+    margin-right: 20px;
+}
+

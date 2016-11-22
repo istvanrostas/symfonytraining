@@ -4,17 +4,23 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     encoders:
-        Symfony\Component\Security\Core\User\User : plaintext
+#        Symfony\Component\Security\Core\User\User : plaintext
+        Blog\ModelBundle\Entity\Author:
+                    algorithm: bcrypt
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }
+#        in_memory:
+#            memory:
+#                users:
+#                    admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }
+        our_db_provider:
+                    entity:
+                        class: Blog\ModelBundle:Author
+                        property: name
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -25,7 +31,7 @@ security:
         admin_area:
             pattern: ^/admin/
             anonymous: ~
-            http_basic:
+            provider: our_db_provider
             form_login:
                 login_path: blog_admin_security_login
                 check_path: blog_admin_security_logincheck

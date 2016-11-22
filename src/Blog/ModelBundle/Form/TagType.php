@@ -6,18 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Class AuthorType
- */
-class AuthorType extends AbstractType
+class TagType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name');
+        $builder->add('name');
     }
     
     /**
@@ -26,7 +22,7 @@ class AuthorType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Blog\ModelBundle\Entity\Author'
+            'data_class' => 'Blog\ModelBundle\Entity\Tag'
         ));
     }
 
@@ -35,7 +31,7 @@ class AuthorType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'blog_modelbundle_author';
+        return 'blog_modelbundle_tag';
     }
 
 

@@ -1,9 +1,7 @@
 {% extends 'AdminBundle::layout.html.twig' %}
 
-{% block title %}Post creation{% endblock %}
-
 {% block section %}
-    <h1>Post creation</h1>
+    <h1>Tag creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
@@ -12,7 +10,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('blog_admin_post_index') }}">Back to the list</a>
+            <a href="{{ path('blog_admin_tag_index') }}">Back to the list</a>
         </li>
     </ul>
 {% endblock %}

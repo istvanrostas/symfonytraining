@@ -12,6 +12,7 @@
                 <th>Update At</th>
                 <th>Title</th>
                 <th>Body</th>
+                <th>Tags</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,6 +23,13 @@
                 <td>{% if post.updatedAt %}{{ post.updatedAt | date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ post.title }}</td>
                 <td>{{ post.body | truncate(150) }}</td>
+                <td>
+                    <ul>
+                        {% for tag in post.tags %}
+                            <li>{{ tag.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
                 <td>
                     <ul>
                         <li>
