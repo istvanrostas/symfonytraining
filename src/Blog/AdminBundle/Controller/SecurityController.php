@@ -14,23 +14,38 @@ class SecurityController extends Controller
      */
     public function loginAction()
     {
-        $request = $this->getRequest();
-        $session = $request->getSession();
+//        $request = $this->getRequest();
+//        $session = $request->getSession();
+//
+//        if($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)){
+//            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+//        }else{
+//            $error = $request->get(SecurityContext::AUTHENTICATION_ERROR);
+//            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
+//        }
+//
+//        return $this->render(
+//            'AdminBundle:Security:login.html.twig',
+//            [
+//                'last_username'  => $session->get(SecurityContext::LAST_USERNAME),
+//                'error'          => $error,
+//            ]
+//        );
 
-        if($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)){
-            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
-        }else{
-            $error = $request->get(SecurityContext::AUTHENTICATION_ERROR);
-            $session->remove(SecurityContext::AUTHENTICATION_ERROR);
-        }
 
-        return $this->render(
-            'AdminBundle:Security:login.html.twig',
-            [
-                'last_username'  => $session->get(SecurityContext::LAST_USERNAME),
-                'error'          => $error,
-            ]
-        );
+
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('AdminBundle:Security:login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
 
     }
 

@@ -6,7 +6,7 @@ security:
     encoders:
 #        Symfony\Component\Security\Core\User\User : plaintext
         Blog\ModelBundle\Entity\Author:
-                    algorithm: bcrypt
+                    algorithm: plaintext
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
@@ -19,7 +19,7 @@ security:
 #                    admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }
         our_db_provider:
                     entity:
-                        class: Blog\ModelBundle:Author
+                        class: ModelBundle:Author
                         property: name
 
     firewalls:

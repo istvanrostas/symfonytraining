@@ -4,6 +4,8 @@ namespace Blog\ModelBundle\Repository;
 
 use Blog\ModelBundle\Entity\Author;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * AuthorRepository
@@ -39,5 +41,7 @@ class AuthorRepository extends EntityRepository
 
         return $qb;
     }
+
+
 
 }
