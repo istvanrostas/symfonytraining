@@ -10,6 +10,8 @@
             <p><a href="{{ path('blog_core_post_show', {slug: post.slug}) }}">{{ post.title }}</a></p>
         {% endfor %}
     </aside>
+
+    {{ render(controller('CoreBundle:Tag:index')) }}
 {% endblock %}
 
 {% block section %}

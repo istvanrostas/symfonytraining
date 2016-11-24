@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class TagController extends Controller
 {
     /**
-     * @Route("/tags")
+     *
      */
     public function indexAction()
     {

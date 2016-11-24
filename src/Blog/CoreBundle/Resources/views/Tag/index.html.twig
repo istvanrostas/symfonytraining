@@ -1,18 +1,6 @@
-{% extends "CoreBundle::layout.html.twig" %}
+<h2>{{ 'tag.used' | trans }}</h2>
 
-{% block title %}{{ 'tag.plural' | trans }}{% endblock %}
+{% for tag in usedTags %}
+    <p><a href="{{ path('blog_core_tag_show', {name: tag.name}) }}">{{ tag.name }}</a></p>
+{% endfor %}
 
-{% block sidebar %}
-{% endblock %}
-
-{% block section %}
-
-
-    <h2>{{ 'tag.used' | trans }}</h2>
-
-    {% for tag in usedTags %}
-       <p><a href="{{ path('blog_core_tag_show', {name: tag.name}) }}" >{{ tag.name }}</a></p>
-    {% endfor %}
-
-
-{% endblock %}

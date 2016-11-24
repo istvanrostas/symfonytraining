@@ -43,5 +43,4 @@ class AuthorRepository extends EntityRepository
     }
 
 
-
 }
