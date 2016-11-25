@@ -4,9 +4,8 @@ security:
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     encoders:
-        Symfony\Component\Security\Core\User\User : plaintext
-#        harsh:
-#            algorithm: plaintext
+         Blog\ModelBundle\Entity\Author:
+                    algorithm: bcrypt
 
 
     role_hierarchy:
@@ -14,15 +13,16 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    Elsa:  { password: admin, roles: [ 'ROLE_ADMIN' ] }
-                    Eddie: { password: admin, roles: [ 'ROLE_SUPER_ADMIN' ] }
-                    David: { password: admin, roles: [ 'ROLE_ADMIN' ] }
-#        our_db_provider:
-#                    entity:
-#                        class: ModelBundle:Author
+#        in_memory:
+#            memory:
+#                users:
+#                    Elsa:  { password: admin, roles: [ 'ROLE_ADMIN' ] }
+#                    Eddie: { password: admin, roles: [ 'ROLE_SUPER_ADMIN' ] }
+#                    David: { password: admin, roles: [ 'ROLE_ADMIN' ] }
+        our_db_provider:
+                    entity:
+                        class: ModelBundle:Author
+                        property: name
 
 
     firewalls:
@@ -34,8 +34,8 @@ security:
         admin_area:
             pattern: ^/admin/
             anonymous: ~
-#            provider: our_db_provider
             form_login:
+                provider: our_db_provider
                 login_path: blog_admin_security_login
                 check_path: blog_admin_security_logincheck
                 target_path_parameter: blog_admin_post_index
@@ -47,7 +47,7 @@ security:
 
     access_control:
         - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: '^/admin/post/(new|show)/', roles: ROLE_ADMIN }
+        - { path: '^/admin/post/((new|show)/?)?$', roles: ROLE_ADMIN }
         - { path: '^/admin/post/((?!(new|show)).)*/', roles: ROLE_SUPER_ADMIN }
         - { path: '^/admin/(tag|author)/', roles: ROLE_SUPER_ADMIN }
 

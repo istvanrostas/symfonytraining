@@ -51,7 +51,14 @@ class Authors extends AbstractFixture implements OrderedFixtureInterface, Contai
         $a3 = new Author();
         $a3->setName('Elsa');
 
+        $a1->setPassword($encoder->encodePassword($a1, 'admin'));
+        $a2->setPassword($encoder->encodePassword($a2, 'admin'));
+        $a3->setPassword($encoder->encodePassword($a3, 'admin'));
 
+
+        $a1->setRole('ROLE_SUPER_ADMIN');
+        $a2->setRole('ROLE_ADMIN');
+        $a3->setRole('ROLE_ADMIN');
 
         $a1->setIsActive('1');
         $a2->setIsActive('1');
