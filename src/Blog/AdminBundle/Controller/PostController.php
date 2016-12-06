@@ -5,7 +5,8 @@ namespace Blog\AdminBundle\Controller;
 use Blog\ModelBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Post controller.
@@ -43,8 +44,10 @@ class PostController extends Controller
         $form = $this->createForm('Blog\ModelBundle\Form\PostType', $post);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($post);
             $em->flush($post);
 
@@ -130,7 +133,6 @@ class PostController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('blog_admin_post_delete', array('id' => $post->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

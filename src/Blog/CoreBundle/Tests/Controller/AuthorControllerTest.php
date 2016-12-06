@@ -26,7 +26,7 @@ class AuthorControllerTest extends WebTestCase
 
 
 
-        $crawler = $client->request('GET', '/author/' . $author->getSlug());
+        $crawler = $client->request('GET', '/en/author/' . $author->getSlug());
 
         $this->assertTrue($client->getResponse()->isSuccessful(), 'The response was not succesful.');
 //        $this->assertCount($authorPostCount, $crawler

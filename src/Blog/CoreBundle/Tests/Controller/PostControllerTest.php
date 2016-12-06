@@ -18,10 +18,10 @@ class PostControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/en/');
 
         $this->assertTrue($client->getResponse()->isSuccessful(), 'The response was not succesful.');
-        $this->assertCount(3, $crawler->filter('h2'), 'There should be 3 displayed posts');
+        $this->assertCount(4, $crawler->filter('h2'), 'There should be 3 displayed posts');
     }
 
     /**
@@ -39,13 +39,11 @@ class PostControllerTest extends WebTestCase
 
 
 
-        $crawler = $client->request('GET', '/' . $post->getSlug());
+        $crawler = $client->request('GET', '/en/posts/' . $post->getSlug());
         $this->assertTrue($client->getResponse()->isSuccessful(), "The response was not successfull.");
 
         $this->assertEquals($post->getTitle(), $crawler->filter('h1')->text());
 
-        $this->
-        assertGreaterOrEquals(1, $crawler->filter('article.comment')->count(), 'There should be at least 1 comment');
 
     }
 

@@ -28,10 +28,18 @@ class Author extends Timestampable implements \Serializable, UserInterface
      */
     private $id;
 
+
+    /**
+     * @var string
+     * @ORM\Column(name="email", type="string", unique=true)
+     * @Assert\Email
+     */
+    private $email;
+
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=100)
+     * @ORM\Column(name="username", type="string", length=100, unique=true)
      * @Assert\NotBlank
      */
     private $name;
@@ -85,6 +93,22 @@ class Author extends Timestampable implements \Serializable, UserInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 
     /**
