@@ -5,6 +5,8 @@
 {% block section %}
     <h1>Post creation</h1>
 
+    <p><strong>Author:</strong> {{ app.user.username }}</p>
+
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />

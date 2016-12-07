@@ -6,6 +6,8 @@ security:
     encoders:
          Blog\ModelBundle\Entity\Author:
                     algorithm: bcrypt
+         Blog\ModelBundle\Entity\User:
+                    algorithm: bcrypt
 
 
     role_hierarchy:
@@ -19,10 +21,14 @@ security:
 #                    Elsa:  { password: admin, roles: [ 'ROLE_ADMIN' ] }
 #                    Eddie: { password: admin, roles: [ 'ROLE_SUPER_ADMIN' ] }
 #                    David: { password: admin, roles: [ 'ROLE_ADMIN' ] }
-        our_db_provider:
+        admin_provider:
                     entity:
                         class: ModelBundle:Author
                         property: name
+        user_provider:
+                    entity:
+                        class: ModelBundle:User
+                        property: email
 
 
     firewalls:
@@ -35,13 +41,24 @@ security:
             pattern: ^/admin/
             anonymous: ~
             form_login:
-                provider: our_db_provider
+                provider: admin_provider
                 login_path: blog_admin_security_login
                 check_path: blog_admin_security_logincheck
                 target_path_parameter: blog_admin_post_index
             logout:
                 path: blog_admin_security_logout
                 target: /admin/post
+
+        front_end_area:
+            pattern: /
+            anonymous: ~
+            form_login:
+                provider: user_provider
+                login_path: blog_core_security_signin
+                check_path: blog_core_security_signin
+            logout:
+                  path: blog_core_security_logout
+                  target: /
 
 
 

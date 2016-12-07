@@ -38,9 +38,12 @@
         {{  include ('CoreBundle:Post:_comment.html.twig', {comment: comment}) }}
     {% endfor %}
 
-
+    {% if app.user and enabled %}
     <h4>{{ 'comment.write' | trans }}:</h4>
 
+     <p>{{ 'comment.author' | trans }}: {{ app.user.name }}</p>
+
     {{ form(form, {action: path('blog_core_post_createcomment', {slug: post.slug}) ~ '#comments' })}}
+    {% endif %}
 
 {% endblock %}

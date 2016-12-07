@@ -8,6 +8,7 @@
     <table class="record_list">
         <thead>
             <tr>
+                <th>Author</th>
                 <th>Created At</th>
                 <th>Update At</th>
                 <th>Title</th>
@@ -19,6 +20,7 @@
         <tbody>
         {% for post in posts %}
             <tr>
+                <td>{{ post.author.username }}</td>
                 <td>{{ post.createdAt | date('Y-m-d H:i:s') }}</td>
                 <td>{% if post.updatedAt %}{{ post.updatedAt | date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ post.title }}</td>
@@ -44,6 +46,8 @@
         {% endfor %}
         </tbody>
     </table>
+
+
 
     <ul>
         <li>

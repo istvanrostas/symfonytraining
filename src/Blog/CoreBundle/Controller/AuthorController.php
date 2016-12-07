@@ -31,34 +31,6 @@ class AuthorController extends Controller
         ]);
     }
 
-    /**
-     * Creates a new author entity.
-     *
-     * @param Request $request
-     *
-     * @Route("signup")
-     * @Method({"GET", "POST"})
-     * @return Response
-     */
-    public function newAction(Request $request)
-    {
-        $author = new Author();
-        $form = $this->createForm('Blog\ModelBundle\Form\AuthorType', $author);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($author);
-            $em->flush($author);
-
-            return $this->redirectToRoute('blog_core_author_show', array('id' => $author->getId()));
-        }
-
-        return $this->render('CoreBundle:Author:new.html.twig', array(
-            'author' => $author,
-            'form' => $form->createView(),
-        ));
-    }
 
 
     /**

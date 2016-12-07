@@ -14,7 +14,6 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('authorName', null, array('label' => 'name'))
             ->add('body', null, array('label' => 'comment.singular'))
             ->add('send', 'submit',array('label' => 'send'));
     }

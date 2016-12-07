@@ -94,7 +94,7 @@ class PostManager
      * @param Request $request
      * @return FormInterface|boolean
      */
-    public function createComment(Post $post, Request $request)
+    public function createComment(Post $post, Request $request, $user)
     {
 
         $comment = new Comment();
@@ -104,7 +104,12 @@ class PostManager
         $form = $this->formFactory->create(new CommentType(), $comment);
         $form->handleRequest($request);
 
+
+
         if ($form->isValid()) {
+
+            $comment->setUser($user);
+
             $this->em->persist($comment);
             $this->em->flush();
 
@@ -113,6 +118,8 @@ class PostManager
 
         return $form;
     }
+
+
 
 
 }

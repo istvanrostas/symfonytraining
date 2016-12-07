@@ -4,20 +4,16 @@ namespace Blog\ModelBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\Encoder\EncoderAwareInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
-use FOS\UserBundle\Model\User as BaseUser;
-
 
 /**
- * Author
+ * User
  *
- * @ORM\Table(name="author")
- * @ORM\Entity(repositoryClass="Blog\ModelBundle\Repository\AuthorRepository")
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="Blog\ModelBundle\Repository\UserRepository")
  */
-class Author extends Timestampable implements \Serializable, UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @var int
@@ -28,10 +24,10 @@ class Author extends Timestampable implements \Serializable, UserInterface
      */
     private $id;
 
-
     /**
      * @var string
-     * @ORM\Column(name="email", type="string", unique=true)
+     *
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      * @Assert\Email
      */
     private $email;
@@ -39,64 +35,73 @@ class Author extends Timestampable implements \Serializable, UserInterface
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=100, unique=true)
-     * @Assert\NotBlank
+     * @ORM\Column(name="username", type="string", length=60)
+     * @Assert\NotBlank()
      */
     private $name;
 
+
     /**
-     * @ORM\Column(type="string", length=64)
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
      */
-    private $password;
+    private $plainPassword;
+
 
     /**
      * @var string
      *
-     * @Gedmo\Slug(fields={"name"}, unique=false)
-     * @ORM\Column(length=255)
+     * @ORM\Column(name="password", type="string", length=64)
      */
-    private $slug;
+    private $password;
 
     /**
      * @var ArrayCollection
      *
-     * ORM\OneToMany(targetEntity="Post", mappedBy="author", cascade={'remove'})
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="user")
+     *
      */
-    private $posts;
+    private $comments;
+
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
-
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $role;
-
-    /**
-     * Author constructor.
+     * Constructor
      */
     public function __construct()
     {
-
-        $this->isActive = true;
-        $this->posts = new ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get id
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
 
+
+
     /**
-     * @return mixed
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
      */
     public function getEmail()
     {
@@ -104,19 +109,11 @@ class Author extends Timestampable implements \Serializable, UserInterface
     }
 
     /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
      * Set name
      *
      * @param string $name
      *
-     * @return Author
+     * @return User
      */
     public function setName($name)
     {
@@ -135,98 +132,20 @@ class Author extends Timestampable implements \Serializable, UserInterface
         return $this->name;
     }
 
-
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Author
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-
-    /**
-     * Add posts
-     *
-     * @param Post $posts
-     *
-     * @return Author
-     */
-    public function addPost(Post $posts)
-    {
-        $this->posts[] = $posts;
-
-        return $this;
-    }
-
-    /**
-     * Remove posts
-     *
-     * @param Post $posts
-     */
-    public function removePost(Post $posts)
-    {
-        $this->posts->removeElement($posts);
-    }
-
-    /**
-     * Get posts
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPosts()
-    {
-        return $this->posts;
-    }
-
     /**
      * @return mixed
      */
-    public function getIsActive()
+    public function getPlainPassword()
     {
-        return $this->isActive;
+        return $this->plainPassword;
     }
 
     /**
-     * @param mixed $isActive
+     * @param mixed $plainPassword
      */
-    public function setIsActive($isActive)
+    public function setPlainPassword($plainPassword)
     {
-        $this->isActive = $isActive;
-    }
-
-    /**
-     * @param mixed $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * @return string
-     */
-
-    public function __toString()
-    {
-        return $this->name;
+        $this->plainPassword = $plainPassword;
     }
 
 
@@ -241,9 +160,8 @@ class Author extends Timestampable implements \Serializable, UserInterface
         return serialize(array(
             $this->id,
             $this->name,
+            $this->email,
             $this->password,
-            // see section on salt below
-            // $this->salt,
         ));
     }
 
@@ -258,16 +176,13 @@ class Author extends Timestampable implements \Serializable, UserInterface
      */
     public function unserialize($serialized)
     {
-          list (
-        $this->id,
-        $this->name,
-        $this->password,
-        // see section on salt below
-        // $this->salt
-        ) = unserialize($serialized);
+        list(
+            $this->id,
+            $this->name,
+            $this->email,
+            $this->password,
+            ) = unserialize($serialized);
     }
-
-
 
     /**
      * Returns the roles granted to the user.
@@ -287,23 +202,9 @@ class Author extends Timestampable implements \Serializable, UserInterface
      */
     public function getRoles()
     {
-        return array($this->role);
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param mixed $role
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
+        return [
+          "ROLE_USER",
+        ];
     }
 
     /**
@@ -338,7 +239,7 @@ class Author extends Timestampable implements \Serializable, UserInterface
      */
     public function getUsername()
     {
-       return $this->getName();
+        $this->email;
     }
 
     /**
@@ -349,6 +250,78 @@ class Author extends Timestampable implements \Serializable, UserInterface
      */
     public function eraseCredentials()
     {
+    }
 
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return User
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \Blog\ModelBundle\Entity\Comment $comment
+     *
+     * @return User
+     */
+    public function addComment(\Blog\ModelBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \Blog\ModelBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Blog\ModelBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     *
+     * @return User
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get role
+     *
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
     }
 }

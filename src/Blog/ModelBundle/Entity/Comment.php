@@ -25,14 +25,6 @@ class Comment extends Timestampable
     /**
      * @var string
      *
-     * @ORM\Column(name="authorName", type="string", length=100)
-     * @Assert\NotBlank
-     */
-    private $authorName;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="body", type="text")
      * @Assert\NotBlank
      */
@@ -47,6 +39,14 @@ class Comment extends Timestampable
      */
     private $post;
 
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -58,29 +58,7 @@ class Comment extends Timestampable
         return $this->id;
     }
 
-    /**
-     * Set authorName
-     *
-     * @param string $authorName
-     *
-     * @return Comment
-     */
-    public function setAuthorName($authorName)
-    {
-        $this->authorName = $authorName;
 
-        return $this;
-    }
-
-    /**
-     * Get authorName
-     *
-     * @return string
-     */
-    public function getAuthorName()
-    {
-        return $this->authorName;
-    }
 
     /**
      * Set body
@@ -128,5 +106,29 @@ class Comment extends Timestampable
     public function getPost()
     {
         return $this->post;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Blog\ModelBundle\Entity\User $user
+     *
+     * @return Comment
+     */
+    public function setUser(\Blog\ModelBundle\Entity\User $user)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Blog\ModelBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

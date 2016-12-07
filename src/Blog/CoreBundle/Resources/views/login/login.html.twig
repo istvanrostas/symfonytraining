@@ -1,0 +1,21 @@
+{% extends 'CoreBundle::layout.html.twig' %}
+
+
+{% block section %}
+    {% if error %}
+        <div>{{ error.message }}</div>
+    {% endif %}
+
+    <form action="{{ path('blog_core_security_signin') }}" method="post">
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="_username" value="{{ last_username }}" />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="_password" />
+
+        <input type="hidden" name="_target_path" value="{{ path('blog_core_post_index') }}" />
+
+
+        <button type="submit">login</button>
+    </form>
+{% endblock %}

@@ -48,6 +48,9 @@ class PostController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            $user = $this->checkAndGetUser();
+            $post->setAuthor($user);
+
             $em->persist($post);
             $em->flush($post);
 
@@ -134,5 +137,15 @@ class PostController extends Controller
             ->setAction($this->generateUrl('blog_admin_post_delete', array('id' => $post->getId())))
             ->setMethod('DELETE')
             ->getForm();
+    }
+
+    private function checkAndGetUser()
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
+
+         return $this->get('security.token_storage')->getToken()->getUser();
     }
 }

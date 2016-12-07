@@ -60,6 +60,10 @@ class Authors extends AbstractFixture implements OrderedFixtureInterface, Contai
         $a2->setRole('ROLE_ADMIN');
         $a3->setRole('ROLE_ADMIN');
 
+        $a1->setEmail('asd1@gmail.com');
+        $a2->setEmail('asd2@gmail.com');
+        $a3->setEmail('asd3@gmail.com');
+
         $a1->setIsActive('1');
         $a2->setIsActive('1');
         $a3->setIsActive('1');

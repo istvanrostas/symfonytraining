@@ -20,6 +20,7 @@ comment:
     on: Mikor:
     singular: Komment
     write: Szólj hozzá
+    author: Kommentelő
 
 author:
   empty.posts: Nincs megjeleníthető posztja az adott Szerzőnek

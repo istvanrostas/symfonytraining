@@ -50,7 +50,10 @@ class PostController extends Controller
         $post = $this->getPostManager()->findBySlug($slug);
         $form = $this->createForm(new CommentType());
 
+        $enabled = $this->get('setting.manager')->isCommentEnabled();
+
         return $this->render('CoreBundle:Post:show.html.twig', [
+            'enabled' => $enabled,
             'post' => $post,
             'form' => $form->createView(),
         ]);
@@ -66,8 +69,9 @@ class PostController extends Controller
      */
     public function createCommentAction(Request $request, $slug)
     {
+        $user = $this->checkAndGetUser();
         $post = $this->getPostManager()->findBySlug($slug);
-        $form = $this->getPostManager()->createComment($post, $request);
+        $form = $this->getPostManager()->createComment($post, $request, $user);
 
         if (true === $form) {
 
@@ -92,6 +96,19 @@ class PostController extends Controller
     private function getPostManager()
     {
         return $this->get('post.manager');
+    }
+
+    /**
+     * @return mixed
+     */
+    private function checkAndGetUser()
+    {
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException();
+        }
+
+
+        return $this->get('security.token_storage')->getToken()->getUser();
     }
 
 }

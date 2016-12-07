@@ -4,7 +4,7 @@
             {{ 'post.on' | trans | capitalize}} <time datetime="{{ comment.createdAt | date('c') }}">
                 {{ comment.createdAt | date }}
             </time>
-            {{ 'by' | trans }} {{ comment.authorName }}
+            {{ 'by' | trans }} {{ comment.user.name }}
         </p>
 
     </header>
