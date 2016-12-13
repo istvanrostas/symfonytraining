@@ -3,6 +3,7 @@
 {% block title %}{{ 'post.by.author' | trans({ '%name%': author.name }) }}{% endblock %}
 
 {% block sidebar %}
+    {{ testMD | markdownify }}
     <aside>
         <h3>{{ 'post.by' | trans }}</h3>
 

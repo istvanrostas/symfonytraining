@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function createCommentAction(Request $request, $slug)
     {
-        $user = $this->checkAndGetUser();
+        $this->get('app.user_checker')->isUserLoagged();
         $post = $this->getPostManager()->findBySlug($slug);
         $form = $this->getPostManager()->createComment($post, $request, $user);
 
@@ -98,17 +98,6 @@ class PostController extends Controller
         return $this->get('post.manager');
     }
 
-    /**
-     * @return mixed
-     */
-    private function checkAndGetUser()
-    {
-        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw $this->createAccessDeniedException();
-        }
 
-
-        return $this->get('security.token_storage')->getToken()->getUser();
-    }
 
 }

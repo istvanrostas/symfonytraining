@@ -43,6 +43,8 @@ services:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        user_checker: '@app.user_checker'
 
 # Doctrine Configuration
 doctrine:

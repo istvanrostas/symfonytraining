@@ -3,6 +3,7 @@
 namespace Blog\CoreBundle\Controller;
 
 use Blog\CoreBundle\Services\AuthorManager;
+use Blog\CoreBundle\Services\MarkdownTransformer;
 use Blog\ModelBundle\Entity\Author;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -25,9 +26,13 @@ class AuthorController extends Controller
         $author = $this->getAuthorManager()->findBySlug($slug);
         $posts = $this->getAuthorManager()->findPosts($author);
 
+//        $markdownParser = $this->get('app.markdown_parser');
+//        $testMD = $markdownParser->parser('asdasd');
+
         return $this->render('CoreBundle:Author:show.html.twig', [
             'author' => $author,
             'posts' => $posts,
+            'testMD' => 'vmi',
         ]);
     }
 

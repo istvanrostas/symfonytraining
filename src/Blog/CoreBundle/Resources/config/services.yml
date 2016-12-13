@@ -14,8 +14,22 @@ services:
     setting.manager:
         class: %setting_manager.class%
         arguments: ['@doctrine.orm.entity_manager']
-
-
+    app.markdown_transformer:
+        class: Blog\CoreBundle\Services\MarkdownTransformer
+        arguments: [@markdown.parser]
+    app.markdown_extension:
+        class: Blog\CoreBundle\Twig\MarkdownExtension
+        arguments: ['@app.markdown_transformer']
+        tags:
+             - { name: twig.extension }
+    app.form.post:
+        class: Blog\ModelBundle\Form\PostType
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: form.type }
+    app.user_checker:
+        class: Blog\CoreBundle\Services\UserChecker
+        arguments: ['@security.authorization_checker']
 
 #    core.example:
 #        class: Blog\CoreBundle\Example
